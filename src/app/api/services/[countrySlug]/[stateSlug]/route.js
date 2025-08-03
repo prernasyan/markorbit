@@ -1,28 +1,32 @@
-//src/app/api/services/[countrySlug]/[stateSlug]/route.js
-import { MarketplaceQueries } from "@/lib/queries";
+// app/api/services/[countrySlug]/[stateSlug]/route.js
 import { NextResponse } from "next/server";
+import { MarketplaceQueries } from "@/lib/queries";
 
 export async function GET(request, { params }) {
-  const { countrySlug, stateSlug } = params;
-
   try {
+    const { countrySlug, stateSlug } = params;
+
+    console.log(
+      `API: Fetching services for country: ${countrySlug}, state: ${stateSlug}`
+    );
+
     const services = await MarketplaceQueries.getServicesByState(
       countrySlug,
       stateSlug
     );
-    console.log("Fetching services for:", { countrySlug, stateSlug });
+
+    console.log(
+      `API: Found ${services.length} services for ${countrySlug}/${stateSlug}`
+    );
 
     return NextResponse.json({
-      success: true,
       data: services,
+      count: services.length,
     });
   } catch (error) {
-    console.error("Error fetching services:", error);
+    console.error("API Error fetching services:", error);
     return NextResponse.json(
-      {
-        success: false,
-        error: "Failed to fetch services",
-      },
+      { error: "Failed to fetch services", details: error.message },
       { status: 500 }
     );
   }
