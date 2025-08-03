@@ -1,0 +1,61 @@
+// src/app/api/schemas/business-listings.js
+export const businessListingsSchema = {
+  tableName: "business_listings",
+  createTable: `
+    CREATE TABLE IF NOT EXISTS business_listings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      slug TEXT NOT NULL,
+      description TEXT,
+      address TEXT,
+      phone TEXT,
+      email TEXT,
+      website TEXT,
+      rating DECIMAL(3,2) DEFAULT 0.00,
+      review_count INTEGER DEFAULT 0,
+      is_verified BOOLEAN DEFAULT 0,
+      is_active BOOLEAN DEFAULT 1,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+  `,
+  seedData: [
+    {
+      name: "Premium Salon Delhi",
+      slug: "premium-salon-delhi",
+      description: "High-end salon services in New Delhi",
+      address: "123 Connaught Place, New Delhi",
+      phone: "+91-11-12345678",
+      email: "info@premiumsalon.com",
+      website: "https://premiumsalon.com",
+      rating: 4.5,
+      review_count: 150,
+      is_verified: true,
+    },
+    {
+      name: "Style Studio Mumbai",
+      slug: "style-studio-mumbai",
+      description: "Modern styling services in Mumbai",
+      address: "456 Bandra West, Mumbai",
+      phone: "+91-22-87654321",
+      email: "contact@stylestudio.com",
+      website: "https://stylestudio.com",
+      rating: 4.2,
+      review_count: 89,
+      is_verified: true,
+    },
+  ],
+  insertQuery: `INSERT INTO business_listings (name, slug, description, address, phone, email, website, rating, review_count, is_verified) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  insertParams: (item) => [
+    item.name,
+    item.slug,
+    item.description,
+    item.address,
+    item.phone,
+    item.email,
+    item.website,
+    item.rating,
+    item.review_count,
+    item.is_verified,
+  ],
+};

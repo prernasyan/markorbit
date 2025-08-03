@@ -1,4 +1,3 @@
-
 import FooterFour from "@/layout/footers/FooterFour";
 import HeaderFour from "@/layout/headers/HeaderFour";
 import AwardAreaHomeFour from "./AwardAreaHomeFour";
@@ -14,20 +13,22 @@ import PricingAreaHomeFour from "./PricingAreaHomeFour";
 import ReviewAreaHomeFour from "./ReviewAreaHomeFour";
 import ServicesAreaHomeFour from "./ServicesAreaHomeFour";
 import TestimonialAreaHomeFour from "./TestimonialAreaHomeFour";
+import HeaderFive from "@/layout/headers/HeaderFive";
 
 const HomeFour = () => {
   return (
     <>
-      <HeaderFour />
+      {/* <HeaderFour /> */}
+      {/* <HeaderFive /> */}
       <main>
-        <HeroBannerHomefour />
+        <HeroBannerHomefour service={""} state={""} country={""} />
         <ServicesAreaHomeFour />
         <BrandAreaHomeFour />
         <FeatureAreaHomeFour />
         <OptimizeAreaHomeFour />
         <CounterAreaHomeFour />
         <PortfolioAreaHomeFour />
-        <PricingAreaHomeFour />
+        {/* <PricingAreaHomeFour /> */}
         <TestimonialAreaHomeFour />
         <ReviewAreaHomeFour />
         <ContactAreaHomeFour />

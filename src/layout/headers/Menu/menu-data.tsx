@@ -46,16 +46,16 @@ const menu_data: menu_data_type[] = [
   {
     id: 1,
     title: "Home",
-    link: "#",
-    has_dropdown: true,
+    link: "/",
+    has_dropdown: false,
     img_dropdown: true,
-    sub_menus: [
-      { link: "/", title: "SEO Marketing", demo_img: home_demo_1 },
-      { link: "/home-2", title: "SEO Analysis", demo_img: home_demo_2 },
-      { link: "/home-3", title: "Business SEO", demo_img: home_demo_3 },
-      { link: "/home-4", title: "SEO Agency", demo_img: home_demo_4 },
-      { link: "/home-5", title: "SEO Campaign", demo_img: home_demo_5 },
-    ],
+    // sub_menus: [
+    //   { link: "/", title: "SEO Marketing", demo_img: home_demo_1 },
+    //   { link: "/home-2", title: "SEO Analysis", demo_img: home_demo_2 },
+    //   { link: "/home-3", title: "Business SEO", demo_img: home_demo_3 },
+    //   { link: "/home-4", title: "SEO Agency", demo_img: home_demo_4 },
+    //   { link: "/home-5", title: "SEO Campaign", demo_img: home_demo_5 },
+    // ],
   },
   {
     id: 2,
@@ -108,56 +108,56 @@ const menu_data: menu_data_type[] = [
   },
   {
     id: 4,
-    title: "Pages",
-    link: "#",
-    has_dropdown: true,
-    has_megamenu: true,
-    sub_menus: [
-      {
-        layout: [
-          { link: "/about", title: "About Us" },
-          { link: "/service", title: "Services" },
-          { link: "/team", title: "Team Member" },
-          { link: "/team-details", title: "Team Details" },
-          { link: "/sign-in", title: "Sign In" },
-          { link: "/sign-out", title: "Sign Up" },
-        ],
-      },
-      {
-        layout: [
-          { link: "/pricing", title: "Pricing" },
-          { link: "/portfolio", title: "Case Studies 2 Columns" },
-          { link: "/portfolio-2", title: "Case Studies 3 Columns" },
-          { link: "/portfolio-details", title: "Case Studies Details" },
-          { link: "/blog-grid", title: "Blog Grid" },
-          { link: "/blog-masonry", title: "Blog Masonry" },
-        ],
-      },
-      {
-        layout: [
-          { link: "/blog-list", title: "Blog List" },
-          { link: "/blog-details", title: "Blog Details" },
-          { link: "/blog-details-2", title: "Blog Details Full Width" },
-          { link: "/faq", title: "FAQ" },
-          { link: "/contact", title: "Contact" },
-        ],
-      },
-    ],
+    title: "Case Studies",
+    link: "/portfolio",
+    has_dropdown: false,
+    has_megamenu: false,
+    // sub_menus: [
+    //   {
+    //     layout: [
+    //       { link: "/about", title: "About Us" },
+    //       { link: "/service", title: "Services" },
+    //       { link: "/team", title: "Team Member" },
+    //       { link: "/team-details", title: "Team Details" },
+    //       { link: "/sign-in", title: "Sign In" },
+    //       { link: "/sign-out", title: "Sign Up" },
+    //     ],
+    //   },
+    //   {
+    //     layout: [
+    //       { link: "/pricing", title: "Pricing" },
+    //       { link: "/portfolio", title: "Case Studies 2 Columns" },
+    //       { link: "/portfolio-2", title: "Case Studies 3 Columns" },
+    //       { link: "/portfolio-details", title: "Case Studies Details" },
+    //       { link: "/blog-grid", title: "Blog Grid" },
+    //       { link: "/blog-masonry", title: "Blog Masonry" },
+    //     ],
+    //   },
+    //   {
+    //     layout: [
+    //       { link: "/blog-list", title: "Blog List" },
+    //       { link: "/blog-details", title: "Blog Details" },
+    //       { link: "/blog-details-2", title: "Blog Details Full Width" },
+    //       { link: "/faq", title: "FAQ" },
+    //       { link: "/contact", title: "Contact" },
+    //     ],
+    //   },
+    // ],
   },
   {
     id: 5,
     title: "Blog",
-    link: "#",
-    has_dropdown: true,
-    blog_dropdown: true,
-    sub_menus: [
-      { link: "/blog", title: "Blog" },
-      { link: "/blog-grid", title: "Blog Grid" },
-      { link: "/blog-masonry", title: "Blog Masonry" },
-      { link: "/blog-list", title: "Blog List" },
-      { link: "/blog-details", title: "Blog Details" },
-      { link: "/blog-details-2", title: "Blog Details Full Width" },
-    ],
+    link: "/blog-grid",
+    has_dropdown: false,
+    blog_dropdown: false,
+    // sub_menus: [
+    //   { link: "/blog", title: "Blog" },
+    //   { link: "/blog-grid", title: "Blog Grid" },
+    //   { link: "/blog-masonry", title: "Blog Masonry" },
+    //   { link: "/blog-list", title: "Blog List" },
+    //   { link: "/blog-details", title: "Blog Details" },
+    //   { link: "/blog-details-2", title: "Blog Details Full Width" },
+    // ],
   },
   {
     id: 6,
