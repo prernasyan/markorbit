@@ -38,7 +38,6 @@ const HomeFive = ({ countries }: HomeFiveProps) => {
         <ToolestAeaHomeFive />
         <ProjectAreaHomeTwo style={true} />
         <ProjectFeaturHomefive />
-        <TeamAreaHomeFive />
         <TestimonialAreaHomeFive />
         <ReviewAreaHomeFour style={true} />
         <CountriesSection countries={countries} />

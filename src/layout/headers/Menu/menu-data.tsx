@@ -117,8 +117,6 @@ const menu_data: menu_data_type[] = [
     //     layout: [
     //       { link: "/about", title: "About Us" },
     //       { link: "/service", title: "Services" },
-    //       { link: "/team", title: "Team Member" },
-    //       { link: "/team-details", title: "Team Details" },
     //       { link: "/sign-in", title: "Sign In" },
     //       { link: "/sign-out", title: "Sign Up" },
     //     ],
