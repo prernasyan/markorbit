@@ -25,6 +25,7 @@ const team_details_content = {
     "Visual Identity Improved.",
   ],
 };
+
 const {
   bg_img,
   job_title,
@@ -39,12 +40,29 @@ const {
 } = team_details_content;
 
 const TeamDetailsDynamic = ({ single_member }: any) => {
+  // Early return if single_member is not found
   if (!single_member) {
     return (
       <section className="team-area pt-200 pb-100">
         <div className="container text-center">
           <h2>Team member not found.</h2>
           <p>Please check the URL or try again later.</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Additional safety checks for required properties
+  if (
+    !single_member.avatar ||
+    !single_member.name ||
+    !single_member.job_title
+  ) {
+    return (
+      <section className="team-area pt-200 pb-100">
+        <div className="container text-center">
+          <h2>Invalid team member data.</h2>
+          <p>Some required information is missing.</p>
         </div>
       </section>
     );
@@ -64,7 +82,7 @@ const TeamDetailsDynamic = ({ single_member }: any) => {
                   <Image
                     src={single_member.avatar}
                     className="single_avater"
-                    alt="theme-pure"
+                    alt={`${single_member.name} avatar`}
                   />
                 </div>
                 <div className="team-details-content">
@@ -72,12 +90,18 @@ const TeamDetailsDynamic = ({ single_member }: any) => {
                     {single_member.job_title}
                   </span>
                   <h4 className="team-details-title">{single_member.name}</h4>
-                  <a className="team-details-email" href={`mailto:${email}`}>
+                  <a
+                    className="team-details-email"
+                    href={`mailto:${single_member.email || email}`}
+                  >
                     <span>Email:</span>
-                    {email}
+                    {single_member.email || email}
                   </a>
-                  <a className="team-details-number" href={`tel:${phone}`}>
-                    <span>Phone:</span> {phone}
+                  <a
+                    className="team-details-number"
+                    href={`tel:${single_member.phone || phone}`}
+                  >
+                    <span>Phone:</span> {single_member.phone || phone}
                   </a>
                   <div className="team-details-social">
                     <SocialLinksTwo />
@@ -86,16 +110,17 @@ const TeamDetailsDynamic = ({ single_member }: any) => {
               </div>
               <div className="team-details-about mb-45">
                 <h3 className="team-details-about-title">{about_text}</h3>
-                <p>{about_title}</p>
+                <p>{single_member.about_title || about_title}</p>
               </div>
               <div className="team-details-exprience">
                 <h3 className="team-details-exprience-title">{title_2}</h3>
-                <p>{sm_des}</p>
+                <p>{single_member.sm_des || sm_des}</p>
                 <ul>
-                  {" "}
-                  {fetures.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
+                  {(single_member.features || fetures).map(
+                    (item: string, i: number) => (
+                      <li key={i}>{item}</li>
+                    )
+                  )}
                 </ul>
               </div>
               <div className="team-details-shape">
