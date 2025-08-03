@@ -32,9 +32,7 @@ const TeamDetailsPage = ({ params }: { params: { id: string } }) => {
   return (
     <Wrapper>
       <HeaderSix />
-      <main>
-        <TeamDetailsDynamic single_member={single_member} />
-      </main>
+      <main>{/* <TeamDetailsDynamic single_member={single_member} /> */}</main>
       <FooterFive style={true} />
       <ScrollToTop style={false} />
     </Wrapper>
