@@ -30,6 +30,12 @@ const CountriesSection = ({ countries = [] }: { countries: Country[] }) => {
   const [servicesMap, setServicesMap] = useState<ServicesMap>({});
   const [loading, setLoading] = useState(false);
 
+  // Get the base URL from environment variable or use relative URLs
+  const getApiUrl = (endpoint: string) => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+    return `${baseUrl}${endpoint}`;
+  };
+
   useEffect(() => {
     if (countries.length > 0) {
       const india = countries.find(
@@ -54,7 +60,7 @@ const CountriesSection = ({ countries = [] }: { countries: Country[] }) => {
     setServicesMap({});
 
     try {
-      const response = await fetch(`/api/states/${country.slug}`);
+      const response = await fetch(getApiUrl(`/api/states/${country.slug}`));
       const data: State[] = await response.json();
       setStates(data);
       if (data.length > 0) {
@@ -75,7 +81,7 @@ const CountriesSection = ({ countries = [] }: { countries: Country[] }) => {
       statesData.map(async (state) => {
         try {
           const response = await fetch(
-            `/api/services/${country.slug}/${state.slug}`
+            getApiUrl(`/api/services/${country.slug}/${state.slug}`)
           );
           const data = await response.json();
           return { stateSlug: state.slug, services: data.data || [] };
