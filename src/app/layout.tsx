@@ -1,5 +1,5 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/index.scss";
- 
 
 export default function RootLayout({
   children,
@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head> 
+      <head>
         <link rel="icon" href="favicon.ico" sizes="any" />
         <link
           rel="stylesheet"

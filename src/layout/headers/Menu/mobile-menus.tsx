@@ -105,9 +105,9 @@ const MobileMenus = () => {
                     <div className="row">
                       <div className="col-xl-6">
                         <div className="tp-menu-banner">
-                          <h5 className="tp-menu-banner-title">
+                          <span className="tp-menu-banner-title">
                             {menu.inner_title}
-                          </h5>
+                          </span>
                           <ul>
                             {menu.sub_menus?.map(
                               (service_menu, service_index) => (

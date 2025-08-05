@@ -43,9 +43,9 @@ const NavMenu = () => {
                 <div className="row">
                   <div className="col-xl-6">
                     <div className="tp-menu-banner">
-                      <h5 className="tp-menu-banner-title">
+                      <span className="tp-menu-banner-title mb-4">
                         {item.inner_title}
-                      </h5>
+                      </span>
                       <ul>
                         {item.sub_menus?.map((service_item, s_index) => (
                           <li key={s_index}>
@@ -68,11 +68,11 @@ const NavMenu = () => {
                     <div className="tp-menu-banner-wrap">
                       <div className="tp-menu-banner-content">
                         <span>{item.banner_sub_title}</span>
-                        <h5 className="tp-menu-banner-title-2">
+                        <span className="tp-menu-banner-title-2">
                           {item.banner_title}
-                        </h5>
+                        </span>
                         <div className="tp-menu-banner-btn">
-                          <Link href="/services">
+                          <Link href="/service">
                             Learn more
                             <span>{item.icon}</span>
                           </Link>

@@ -30,17 +30,6 @@ type hero_content_type = {
   phone: string;
 };
 
-const hero_content: hero_content_type = {
-  title: (
-    <>
-      All in one SEO for your business to give real impact <br /> consultancy
-      and analysis.!
-    </>
-  ),
-  questions: "Got Questions?",
-  phone: "+800 2563 123",
-};
-const { title, questions, phone } = hero_content;
 type Props = {
   service: string;
   state: string;
@@ -55,6 +44,17 @@ const toTitleCase = (input: unknown) => {
 };
 
 const HeroBannerHomefour2: React.FC<Props> = ({ service, state, city }) => {
+  const hero_content: hero_content_type = {
+    title: (
+      <>
+        Looking for reliable and affordable {toTitleCase(service)} in {city}?{" "}
+        <br /> We provide expert-level services tailored to your business goals.
+      </>
+    ),
+    questions: "Got Questions?",
+    phone: "+800 2563 123",
+  };
+  const { title, questions, phone } = hero_content;
   return (
     <>
       <div className="banner-area banner-4-spaces pt-40 pb-80">
@@ -63,44 +63,29 @@ const HeroBannerHomefour2: React.FC<Props> = ({ service, state, city }) => {
             <div className="col-xxl-7 col-xl-10 col-lg-7">
               <div className="banner-4">
                 <div className="banner-4-content">
-                  {/* <h4 className="banner-4-title cd-headline clip is-full-width">
-                    {service} services <br />
-                    <span className="cd-words-wrapper">
-                      <TypeAnimation
-                        sequence={[
-                          "agency",
-                          1000,
-                          "analysis",
-                          1000,
-                          "value",
-                          1000,
-                        ]}
-                        wrapper="b"
-                        speed={5}
-                        style={{ display: "inline-block" }}
-                        repeat={Infinity}
-                      />
-                    </span>{" "}
-                    in {state}
-                  </h4> */}
-
-                  <TypeAnimation
-                    sequence={[
-                      `${toTitleCase(service)} in ${toTitleCase(
-                        city
-                      )}, ${toTitleCase(state)}`,
-                      1000,
-                    ]}
-                    wrapper="h4"
-                    className="banner-4-title"
-                    speed={50}
-                    style={{ display: "inline-block" }}
-                    repeat={Infinity}
-                  />
+                  <h1>
+                    <TypeAnimation
+                      sequence={[
+                        `${toTitleCase(service)} in ${toTitleCase(
+                          city
+                        )}, ${toTitleCase(state)}`,
+                        1000,
+                      ]}
+                      wrapper="h4"
+                      className="banner-4-title"
+                      speed={50}
+                      style={{ display: "inline-block" }}
+                      repeat={Infinity}
+                    />
+                  </h1>
 
                   <p className="mt-4">{title}</p>
                   <div className="banner-4-btn mb-30">
-                    <Link href="/contact" className="blue-btn">
+                    <Link
+                      href="https://api.whatsapp.com/send/?phone=%2B918427915962&text&type=phone_number&app_absent=0
+"
+                      className="blue-btn"
+                    >
                       Get Started Now
                     </Link>
                   </div>
