@@ -91,9 +91,10 @@ const HeroBannerHomefour: React.FC<Props> = ({ service, state, country }) => {
                   <p className="mt-4">{title}</p>
                   <div className="banner-4-btn mb-30">
                     <Link
-                      href="https://api.whatsapp.com/send/?phone=%2B918427915962&text&type=phone_number&app_absent=0
-"
+                      href="https://api.whatsapp.com/send/?phone=%2B918427915962&text&type=phone_number&app_absent=0"
                       className="blue-btn"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Get Started Now
                     </Link>

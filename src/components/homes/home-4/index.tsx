@@ -25,7 +25,7 @@ const HomeFour = () => {
         <ServicesAreaHomeFour />
         <BrandAreaHomeFour />
         <FeatureAreaHomeFour />
-        <OptimizeAreaHomeFour />
+        <OptimizeAreaHomeFour service={""} />
         <CounterAreaHomeFour />
         <PortfolioAreaHomeFour />
         {/* <PricingAreaHomeFour /> */}

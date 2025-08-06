@@ -47,8 +47,9 @@ const HeroBannerHomefour2: React.FC<Props> = ({ service, state, city }) => {
   const hero_content: hero_content_type = {
     title: (
       <>
-        Looking for reliable and affordable {toTitleCase(service)} in {city}?{" "}
-        <br /> We provide expert-level services tailored to your business goals.
+        Looking for reliable and affordable {toTitleCase(service)} in{" "}
+        {toTitleCase(city)}? <br /> We provide expert-level services tailored to
+        your business goals.
       </>
     ),
     questions: "Got Questions?",
@@ -82,9 +83,10 @@ const HeroBannerHomefour2: React.FC<Props> = ({ service, state, city }) => {
                   <p className="mt-4">{title}</p>
                   <div className="banner-4-btn mb-30">
                     <Link
-                      href="https://api.whatsapp.com/send/?phone=%2B918427915962&text&type=phone_number&app_absent=0
-"
+                      href="https://api.whatsapp.com/send/?phone=%2B918427915962&text&type=phone_number&app_absent=0"
                       className="blue-btn"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Get Started Now
                     </Link>

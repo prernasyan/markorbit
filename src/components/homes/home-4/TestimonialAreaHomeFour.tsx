@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react"; 
+import { useRef, useEffect } from "react";
 
 import Slider from "react-slick";
 import Image, { StaticImageData } from "next/image";
@@ -161,8 +161,7 @@ const TestimonialAreaHomeFour = () => {
       sliderRef.current.slickNext();
     }
   };
-   
- 
+
   return (
     <>
       <section className="testimonial-area pb-60 scene fix">
@@ -180,11 +179,16 @@ const TestimonialAreaHomeFour = () => {
                     </div>
                   </div>
                 </div>
-                {test_shape_data.map((item, i) => 
+                {test_shape_data.map((item, i) => (
                   <div key={i} className={`testimonial-4-shape-${item.id}`}>
-                    <Image className="layer" data-depth={item.data_depth} src={item.img} alt="theme-pure"/>
+                    <Image
+                      className="layer"
+                      data-depth={item.data_depth}
+                      src={item.img}
+                      alt="theme-pure"
+                    />
                   </div>
-                )}
+                ))}
               </div>
             </div>
             <div className="col-lg-6">
@@ -192,9 +196,9 @@ const TestimonialAreaHomeFour = () => {
                 <div className="testimonial-4-wrap mb-40 pl-70">
                   <div className="section-wrapper mb-50">
                     <span>{sub_title}</span>
-                    <h5 className="section-title-4 section-title-4-2">
+                    <div className="section-title-4 section-title-4-2">
                       {title}
-                    </h5>
+                    </div>
                   </div>
                   <Slider
                     {...setting}
@@ -222,14 +226,14 @@ const TestimonialAreaHomeFour = () => {
                           <div className="tptestimonial-4-text">
                             <p>{test_item.sm_des}</p>
                             <div className="tptestimonial-4-author">
-                              <h4 className="title">{test_item.author}</h4>
+                              <div className="title">{test_item.author}</div>
                               <span>{test_item.job_title}</span>
                             </div>
                           </div>
                         </div>
                       </div>
                     ))}
-                  </Slider> 
+                  </Slider>
                 </div>
                 <div className="testimonial-arrow-4 pl-110">
                   <div className="tptestimonal-4-nav p-relative">

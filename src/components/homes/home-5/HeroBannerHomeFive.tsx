@@ -113,9 +113,18 @@ type hero_content_type = {
   brand_title: string;
 };
 const hero_content_home_5: hero_content_type = {
-  title:  <> All in one <br /> SEO software made simple. </>,
-  sm_info: <>We are a UK based SEO agency and the creators of the famous <br /> website
-  crawler and log file analyser tools.</> ,
+  title: (
+    <>
+      {" "}
+      All in one <br /> SEO software made simple.{" "}
+    </>
+  ),
+  sm_info: (
+    <>
+      We are a UK based SEO agency and the creators of the famous <br /> website
+      crawler and log file analyser tools.
+    </>
+  ),
   brand_title: "Trusted by the big ones, loved by everyone",
 };
 const { title, sm_info, brand_title } = hero_content_home_5;
@@ -131,8 +140,8 @@ const HeroBannerHomeFive = () => {
               <Image src={ArrowPlane} alt="theme-pure" />
             </div>
             <div className="banner-5-content-shape-two">
-              <i> 
-                <HeroLangIcon /> 
+              <i>
+                <HeroLangIcon />
               </i>
             </div>
           </div>

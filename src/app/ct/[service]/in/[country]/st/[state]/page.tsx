@@ -19,6 +19,12 @@ import ContactAreaHomeFour from "@/components/homes/home-4/ContactAreaHomeFour";
 import BlogAreaHomeFour from "@/components/homes/home-4/BlogAreaHomeFour";
 import AwardAreaHomeFour from "@/components/homes/home-4/AwardAreaHomeFour";
 
+const toTitleCase = (str: string) =>
+  str
+    .split(/[-_ ]+/) // handle kebab-case, snake_case, or space
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+
 // Define types for params and cities
 interface Params {
   params: {
@@ -42,7 +48,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params) {
   const { service, country, state } = params;
   return {
-    title: `${service} in ${state}`,
+    title: `${toTitleCase(service)} in ${state}`,
   };
 }
 
@@ -94,7 +100,7 @@ export default async function ServiceCitiesPage({ params }: Params) {
           />
           <ServicesAreaHomeFour />
           <FeatureAreaHomeFour />
-          <OptimizeAreaHomeFour />
+          <OptimizeAreaHomeFour service={service} />
           <CounterAreaHomeFour />
           <PortfolioAreaHomeFour />
           <TestimonialAreaHomeFour />
@@ -105,7 +111,7 @@ export default async function ServiceCitiesPage({ params }: Params) {
 
           <div className="container py-4">
             <h1 className="mb-4">
-              {service} in {state}
+              {toTitleCase(service)} in {state}
             </h1>
 
             <div className="row">
@@ -118,7 +124,7 @@ export default async function ServiceCitiesPage({ params }: Params) {
                     <div className="card h-100 shadow-sm">
                       <div className="card-body">
                         <h5 className="card-title text-dark">
-                          {service} in {city.name}
+                          {toTitleCase(service)} in {city.name}
                         </h5>
                         {/* {city.description && (
                           <p className="card-text text-muted">

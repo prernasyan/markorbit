@@ -124,7 +124,7 @@ export default async function BusinessListingsPage({ params }: Params) {
 
           <ServicesAreaHomeFour />
           <FeatureAreaHomeFour />
-          <OptimizeAreaHomeFour />
+          <OptimizeAreaHomeFour service={service} />
           <CounterAreaHomeFour />
           <PortfolioAreaHomeFour />
           <TestimonialAreaHomeFour />
@@ -134,7 +134,7 @@ export default async function BusinessListingsPage({ params }: Params) {
 
           <div className="container py-4">
             <h1 className="mb-4">
-              {service} services in {state}
+              {toTitleCase(service)} in {state}
             </h1>
 
             <div className="row">
@@ -147,7 +147,7 @@ export default async function BusinessListingsPage({ params }: Params) {
                     <div className="card h-100 shadow-sm">
                       <div className="card-body">
                         <h5 className="card-title text-dark">
-                          {service} in {city.name}
+                          {toTitleCase(service)} in {city.name}
                         </h5>
                         {/* {city.description && (
                           <p className="card-text text-muted">
