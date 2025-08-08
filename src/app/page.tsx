@@ -16,8 +16,7 @@ import ToolestAeaHomeFive from "@/components/homes/home-5/ToolestAeaHomeFive";
 import FooterFive from "@/layout/footers/FooterFive";
 
 export const metadata = {
-  title:
-    "Home Main - SEO Marketing - Digital Marketing & SEO Agency Next js Template",
+  title: "Home Main - SEO Marketing - Digital Marketing & SEO Agency",
 };
 
 // This should be a Server Component that fetches data
