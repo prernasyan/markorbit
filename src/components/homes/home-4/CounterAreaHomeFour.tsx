@@ -21,19 +21,19 @@ const counter_data: counter_data_type[] = [
   {
     id: 1,
     icon: <SuccessfulIcon />,
-    counter_number: 120,
+    counter_number: 200,
     title: "Successful Projects",
   },
   {
     id: 2,
     icon: <HappyIcon />,
-    counter_number: 180,
+    counter_number: 195,
     title: "Happy Customers",
   },
   {
     id: 3,
     icon: <TeamMembersIcon />,
-    counter_number: 64,
+    counter_number: 45,
     title: "Team Members",
   },
 ];

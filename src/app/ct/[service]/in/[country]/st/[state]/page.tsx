@@ -134,10 +134,10 @@ export default async function ServiceCitiesPage({ params }: Params) {
           <AwardAreaHomeFour />
 
           <div className="container py-4">
-            <h1 className="mb-4">
+            <h3 className="mb-4">
               {toTitleCase(service)} in {toTitleCase(state)} | Affordable &
               Expert {toTitleCase(service)} Near You
-            </h1>
+            </h3>
 
             <div className="row">
               {cities.map((city: City) => (
@@ -148,9 +148,9 @@ export default async function ServiceCitiesPage({ params }: Params) {
                   >
                     <div className="card h-100 shadow-sm">
                       <div className="card-body">
-                        <h5 className="card-title text-dark">
+                        <h4 className="card-title text-dark">
                           {toTitleCase(service)} in {toTitleCase(city.name)}
-                        </h5>
+                        </h4>
                       </div>
                     </div>
                   </Link>

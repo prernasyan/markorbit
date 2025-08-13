@@ -31,8 +31,8 @@ interface footer_five_content_type {
 }
 // footer five content
 const footer_five_content: footer_five_content_type = {
-  sm_des: "Best Award-winning SEO agency.!",
-  phone_number: "(229) 888-5203",
+  sm_des: "Best Award Winning Digital Agency!",
+  phone_number: "+91 8427915962",
   btn_text: "Enquire Now",
   work_title: "Information",
   work_times: [
@@ -51,7 +51,7 @@ const footer_five_content: footer_five_content_type = {
         { id: 3, title: "About us", link: "/about" },
         { id: 4, title: "SEO Blog", link: "/blog-grid" },
         { id: 5, title: "Services", link: "/service" },
-        { id: 6, title: "ontact", link: "/contact" },
+        { id: 6, title: "Contact", link: "/contact" },
         { id: 7, title: "Why SEO?", link: "/seo-audit" },
         { id: 8, title: "", link: "" },
       ],
@@ -118,7 +118,9 @@ const FooterFive = ({ style, style_audit, style_2 }: any) => {
                           </a>
                         </div>
                         <div className="submit-call">
-                          <button className="light-blue-btn">{btn_text}</button>
+                          <button className="light-blue-btn">
+                            <a href="/contact">{btn_text}</a>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -129,9 +131,9 @@ const FooterFive = ({ style, style_audit, style_2 }: any) => {
                     <div
                       className={`footer-widget tpfooter-hover ${item.cls} mb-40`}
                     >
-                      <h4 className="footer-widget-title mb-15">
+                      <div className="footer-widget-title mb-15">
                         {item.title}
-                      </h4>
+                      </div>
                       <div className="footer-widget-link">
                         <ul>
                           {item.links?.map((link, index) => (
@@ -146,7 +148,9 @@ const FooterFive = ({ style, style_audit, style_2 }: any) => {
                 ))}
                 <div className="col-lg-3 col-md-6 col-sm-6">
                   <div className="footer-widget footer-5-col-4 mb-40">
-                    <h4 className="footer-widget-title mb-20">{work_title}</h4>
+                    <div className="footer-widget-title mb-20">
+                      {work_title}
+                    </div>
                     <div className="footer-widget-link">
                       <ul>
                         {work_times.map((w_day, w_index) => (

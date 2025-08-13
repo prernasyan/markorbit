@@ -52,53 +52,122 @@ const testimonial_content: testimonial_content_type = {
     {
       id: 1,
       author: "Nathalie Grossman",
-      job_title: "CEO of Advisor Fuel",
+      job_title: "CEO, Advisor Fuel",
       sm_des: (
         <>
-          As a strategy consultancy, {"we’re"} constantly multiple projects
-          which meant we had little resources left our online marketing. we were
-          also reluctant to partner with marketing agencies as most package.!
+          Partnering with this team transformed our digital presence. They
+          understood our brand vision and executed strategies that delivered
+          measurable growth within weeks.
         </>
       ),
     },
     {
       id: 2,
       author: "Jami Rayhan",
-      job_title: "CEO of Advisor Fuel",
+      job_title: "Marketing Director, Innovexa Solutions",
       sm_des: (
         <>
-          As a strategy consultancy, {"we’re"} constantly multiple projects
-          which meant we had little resources left our online marketing. we were
-          also reluctant to partner with marketing agencies as most package.!
+          We were struggling with lead generation until we started working with
+          them. The campaigns were creative, data-driven, and exceeded our
+          expectations.
         </>
       ),
     },
     {
       id: 3,
-      author: "Grossman Nathalie",
-      job_title: "CEO of Advisor Fuel",
+      author: "Sofia Mendes",
+      job_title: "Founder, Luxe Living Interiors",
       sm_des: (
         <>
-          As a strategy consultancy, {"we’re"} constantly multiple projects
-          which meant we had little resources left our online marketing. we were
-          also reluctant to partner with marketing agencies as most package.!
+          Their ability to capture the essence of our brand and translate it
+          into impactful marketing was remarkable. Our website traffic doubled
+          in just two months.
         </>
       ),
     },
     {
       id: 4,
       author: "Habib Mahdi",
-      job_title: "CEO of Advisor Fuel",
+      job_title: "Operations Head, Global Trade Hub",
       sm_des: (
         <>
-          As a strategy consultancy, {"we’re"} constantly multiple projects
-          which meant we had little resources left our online marketing. we were
-          also reluctant to partner with marketing agencies as most package.!
+          Professional, responsive, and result-oriented — they took the time to
+          understand our industry and delivered campaigns that resonated with
+          our audience.
+        </>
+      ),
+    },
+    {
+      id: 5,
+      author: "Priya Sharma",
+      job_title: "Co-Founder, Wellness Co.",
+      sm_des: (
+        <>
+          The team brought fresh ideas to our social media strategy. Engagement
+          rates have never been this high, and our brand now feels more
+          connected to our audience.
+        </>
+      ),
+    },
+    {
+      id: 6,
+      author: "Daniel Cooper",
+      job_title: "Managing Partner, FinEdge Consulting",
+      sm_des: (
+        <>
+          From concept to execution, their work ethic and creativity impressed
+          us. We saw a 35% increase in qualified leads within the first quarter.
+        </>
+      ),
+    },
+    {
+      id: 7,
+      author: "Amelia Nguyen",
+      job_title: "CEO, Style Avenue",
+      sm_des: (
+        <>
+          Their marketing strategies are not only innovative but also highly
+          effective. Our online sales have skyrocketed thanks to their targeted
+          campaigns.
+        </>
+      ),
+    },
+    {
+      id: 8,
+      author: "Carlos Ramirez",
+      job_title: "Head of Product, BrightTech",
+      sm_des: (
+        <>
+          They didn’t just market our product; they told our story in a way that
+          connected with our customers. The ROI has been beyond expectations.
+        </>
+      ),
+    },
+    {
+      id: 9,
+      author: "Emily Carter",
+      job_title: "Founder, Bloom & Grow",
+      sm_des: (
+        <>
+          Every interaction with the team has been insightful and productive.
+          They consistently deliver on time and with exceptional quality.
+        </>
+      ),
+    },
+    {
+      id: 10,
+      author: "Ravi Kumar",
+      job_title: "CMO, EduSphere",
+      sm_des: (
+        <>
+          Working with them felt like having an in-house marketing department.
+          Their dedication, creativity, and results speak for themselves.
         </>
       ),
     },
   ],
 };
+
 const { sub_title, title, testimonial_data } = testimonial_content;
 
 // slider setting
@@ -196,9 +265,9 @@ const TestimonialAreaHomeFour = () => {
                 <div className="testimonial-4-wrap mb-40 pl-70">
                   <div className="section-wrapper mb-50">
                     <span>{sub_title}</span>
-                    <div className="section-title-4 section-title-4-2">
+                    <h3 className="section-title-4 section-title-4-2">
                       {title}
-                    </div>
+                    </h3>
                   </div>
                   <Slider
                     {...setting}

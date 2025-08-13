@@ -13,11 +13,13 @@ type about_content_type = {
 
 const about_content: about_content_type = {
   sm_info_1:
-    "e are in business to develop an SEO software that allows anyone to independently optimize and promote a website on the web, regardless of the level of expertise.",
-  sm_info_2:
-    "We aim to constantly improve the user experience, functionality, and support to provide the best possible options for search engine optimization.",
+    "To empower businesses with the tools, strategies, and technology needed to connect with their audiences, grow online, and dominate local search — all while making digital marketing simpler, faster, and more effective.",
+  sm_info_2: `• Digital Marketing Campaigns that convert
+    • Custom Website Development built for speed, design, and user experience
+    • Data-Driven Strategies that ensure every marketing dollar counts
+  `,
 };
-const {sm_info_1, sm_info_2} = about_content;
+const { sm_info_1, sm_info_2 } = about_content;
 
 const AboutMissionArea = () => {
   return (
@@ -58,7 +60,7 @@ const AboutMissionArea = () => {
                   <span>
                     <Image src={text_img_2} alt="theme-pure" />
                   </span>
-                  <p>{sm_info_2}</p>
+                  <p style={{ whiteSpace: "pre-line" }}>{sm_info_2}</p>
                 </div>
               </div>
             </div>

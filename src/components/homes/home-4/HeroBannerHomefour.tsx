@@ -61,7 +61,7 @@ const HeroBannerHomefour: React.FC<Props> = ({ service, state, country }) => {
       </>
     ),
     questions: "Got Questions?",
-    phone: "+800 2563 123",
+    phone: "+91 8427915962",
   };
   const { title, questions, phone } = hero_content;
   return (
