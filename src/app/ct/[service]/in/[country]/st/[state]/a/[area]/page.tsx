@@ -332,9 +332,9 @@ export default async function BusinessListingsPage({ params }: Params) {
           <div className="container py-4">
             {/* Other Cities Section */}
             <section className="mb-5">
-              <h2 className="mb-4">
+              <h3 className="mb-4">
                 Other Cities for {toTitleCase(service)} in {toTitleCase(state)}
-              </h2>
+              </h3>
               <div className="row">
                 {cities.map((city: City) => (
                   <div key={city.id} className="col-md-4 mb-4">

@@ -15,7 +15,7 @@ const HeaderSixLogo = () => {
           r="25"
           fill="none"
           stroke="#FF6B35"
-          stroke-width="2"
+          strokeWidth="2"
           opacity="0.3"
         />
         <circle
@@ -24,7 +24,7 @@ const HeaderSixLogo = () => {
           r="20"
           fill="none"
           stroke="#FF6B35"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           opacity="0.5"
         />
 
@@ -56,9 +56,9 @@ const HeaderSixLogo = () => {
         <text
           x="70"
           y="25"
-          font-family="Arial, sans-serif"
-          font-size="24"
-          font-weight="bold"
+          fontFamily="Arial, sans-serif"
+          fontSize="24"
+          fontWeight="bold"
           fill="#2D3748"
         >
           MARK
@@ -66,9 +66,9 @@ const HeaderSixLogo = () => {
         <text
           x="70"
           y="45"
-          font-family="Arial, sans-serif"
-          font-size="24"
-          font-weight="bold"
+          fontFamily="Arial, sans-serif"
+          fontSize="24"
+          fontWeight="bold"
           fill="#FF6B35"
         >
           ORBIT
@@ -81,7 +81,7 @@ const HeaderSixLogo = () => {
           x2="70"
           y2="30"
           stroke="#E2E8F0"
-          stroke-width="2"
+          strokeWidth="2"
         />
       </svg>
     </>

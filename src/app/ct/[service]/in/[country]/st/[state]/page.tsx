@@ -148,9 +148,9 @@ export default async function ServiceCitiesPage({ params }: Params) {
                   >
                     <div className="card h-100 shadow-sm">
                       <div className="card-body">
-                        <h4 className="card-title text-dark">
+                        <h5 className="card-title text-dark">
                           {toTitleCase(service)} in {toTitleCase(city.name)}
-                        </h4>
+                        </h5>
                       </div>
                     </div>
                   </Link>
