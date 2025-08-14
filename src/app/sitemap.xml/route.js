@@ -1,4 +1,4 @@
-// app/sitemap.xml/route.js - Debug version with info in XML comments
+// app/sitemap.xml/route.js - Generate all combinations
 import { NextResponse } from "next/server";
 
 const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -12,256 +12,206 @@ export async function GET(request) {
   debugInfo.push(`Timestamp: ${new Date().toISOString()}`);
 
   try {
-    // Test countries API
-    debugInfo.push("Testing countries API...");
+    // Get all countries
+    debugInfo.push("Fetching all countries...");
+    const countriesResponse = await fetch(`${SITE_URL}/api/countries`, {
+      cache: "no-store",
+    });
 
-    const countriesUrl = `${SITE_URL}/api/countries`;
-    debugInfo.push(`Countries URL: ${countriesUrl}`);
+    if (!countriesResponse.ok) {
+      throw new Error(`Countries API failed: ${countriesResponse.status}`);
+    }
 
-    try {
-      const response = await fetch(countriesUrl, { cache: "no-store" });
-      debugInfo.push(`Countries response status: ${response.status}`);
-      debugInfo.push(`Countries response ok: ${response.ok}`);
+    const countriesData = await countriesResponse.json();
+    let countries = [];
+    if (countriesData.success && Array.isArray(countriesData.data)) {
+      countries = countriesData.data;
+    } else if (Array.isArray(countriesData)) {
+      countries = countriesData;
+    }
 
-      if (response.ok) {
-        const text = await response.text();
-        debugInfo.push(`Countries response length: ${text.length} chars`);
-        debugInfo.push(
-          `Countries response preview: ${text.substring(0, 100)}...`
+    debugInfo.push(`Found ${countries.length} countries`);
+
+    // Process each country
+    for (const country of countries) {
+      debugInfo.push(`Processing country: ${country.name} (${country.slug})`);
+
+      try {
+        // Get states for this country
+        const statesResponse = await fetch(
+          `${SITE_URL}/api/states/${country.slug}`,
+          { cache: "no-store" }
         );
 
-        try {
-          const data = JSON.parse(text);
-          debugInfo.push(`Countries data type: ${typeof data}`);
-          debugInfo.push(`Countries is array: ${Array.isArray(data)}`);
+        if (!statesResponse.ok) {
+          debugInfo.push(
+            `States API failed for ${country.slug}: ${statesResponse.status}`
+          );
+          continue;
+        }
 
-          if (Array.isArray(data)) {
-            debugInfo.push(`Countries count: ${data.length}`);
+        const statesData = await statesResponse.json();
+        let states = [];
+        if (Array.isArray(statesData)) {
+          states = statesData;
+        } else if (statesData.success && Array.isArray(statesData.data)) {
+          states = statesData.data;
+        } else if (statesData.data && Array.isArray(statesData.data)) {
+          states = statesData.data;
+        }
 
-            if (data.length > 0) {
-              const country = data[0];
-              debugInfo.push(`First country: ${JSON.stringify(country)}`);
+        debugInfo.push(`Found ${states.length} states for ${country.name}`);
 
-              // Test states API
-              debugInfo.push("Testing states API...");
-              const statesUrl = `${SITE_URL}/api/states/${country.slug}`;
-              debugInfo.push(`States URL: ${statesUrl}`);
+        // Process each state
+        for (const state of states) {
+          debugInfo.push(`Processing state: ${state.name} in ${country.name}`);
+
+          try {
+            // Get services for this country/state combination
+            const servicesResponse = await fetch(
+              `${SITE_URL}/api/services/${country.slug}/${state.slug}`,
+              { cache: "no-store" }
+            );
+
+            if (!servicesResponse.ok) {
+              debugInfo.push(
+                `Services API failed for ${country.slug}/${state.slug}: ${servicesResponse.status}`
+              );
+              continue;
+            }
+
+            const servicesData = await servicesResponse.json();
+            let services = [];
+            if (Array.isArray(servicesData)) {
+              services = servicesData;
+            } else if (
+              servicesData.success &&
+              Array.isArray(servicesData.data)
+            ) {
+              services = servicesData.data;
+            } else if (servicesData.data && Array.isArray(servicesData.data)) {
+              services = servicesData.data;
+            }
+
+            debugInfo.push(
+              `Found ${services.length} services for ${country.name}/${state.name}`
+            );
+
+            // Process each service
+            for (const service of services) {
+              // Generate service URL: /ct/{service}/in/{country}/st/{state}
+              const serviceUrl = `/ct/${service.slug}/in/${country.slug}/st/${state.slug}`;
+              urls.push({
+                url: serviceUrl,
+                changefreq: "weekly",
+                priority: "0.8",
+              });
 
               try {
-                const statesResponse = await fetch(statesUrl, {
-                  cache: "no-store",
-                });
-                debugInfo.push(
-                  `States response status: ${statesResponse.status}`
+                // Get cities for this service/country/state combination
+                const citiesResponse = await fetch(
+                  `${SITE_URL}/api/cities/${country.slug}/${state.slug}/${service.slug}`,
+                  { cache: "no-store" }
                 );
 
-                if (statesResponse.ok) {
-                  const statesText = await statesResponse.text();
-                  debugInfo.push(
-                    `States response length: ${statesText.length} chars`
-                  );
+                if (citiesResponse.ok) {
+                  const citiesData = await citiesResponse.json();
+                  let cities = [];
+                  if (Array.isArray(citiesData)) {
+                    cities = citiesData;
+                  } else if (
+                    citiesData.success &&
+                    Array.isArray(citiesData.data)
+                  ) {
+                    cities = citiesData.data;
+                  } else if (
+                    citiesData.data &&
+                    Array.isArray(citiesData.data)
+                  ) {
+                    cities = citiesData.data;
+                  }
 
-                  try {
-                    const statesData = JSON.parse(statesText);
-                    debugInfo.push(`States data type: ${typeof statesData}`);
+                  // Generate city URLs: /ct/{service}/in/{country}/st/{state}/a/{city}
+                  cities.forEach((city) => {
+                    const cityUrl = `/ct/${service.slug}/in/${country.slug}/st/${state.slug}/a/${city.slug}`;
+                    urls.push({
+                      url: cityUrl,
+                      changefreq: "monthly",
+                      priority: "0.6",
+                    });
+                  });
+
+                  if (cities.length > 0) {
                     debugInfo.push(
-                      `States is array: ${Array.isArray(statesData)}`
+                      `Added ${cities.length} city URLs for ${service.name} in ${state.name}, ${country.name}`
                     );
-
-                    if (Array.isArray(statesData) && statesData.length > 0) {
-                      debugInfo.push(`States count: ${statesData.length}`);
-                      const state = statesData[0];
-                      debugInfo.push(`First state: ${JSON.stringify(state)}`);
-
-                      // Test services API
-                      debugInfo.push("Testing services API...");
-                      const servicesUrl = `${SITE_URL}/api/services/${country.slug}/${state.slug}`;
-                      debugInfo.push(`Services URL: ${servicesUrl}`);
-
-                      try {
-                        const servicesResponse = await fetch(servicesUrl, {
-                          cache: "no-store",
-                        });
-                        debugInfo.push(
-                          `Services response status: ${servicesResponse.status}`
-                        );
-
-                        if (servicesResponse.ok) {
-                          const servicesText = await servicesResponse.text();
-                          debugInfo.push(
-                            `Services response length: ${servicesText.length} chars`
-                          );
-
-                          try {
-                            const servicesData = JSON.parse(servicesText);
-                            debugInfo.push(
-                              `Services data type: ${typeof servicesData}`
-                            );
-                            debugInfo.push(
-                              `Services structure: ${JSON.stringify(
-                                Object.keys(servicesData || {})
-                              )}`
-                            );
-
-                            let services = [];
-                            if (Array.isArray(servicesData)) {
-                              services = servicesData;
-                            } else if (
-                              servicesData &&
-                              Array.isArray(servicesData.data)
-                            ) {
-                              services = servicesData.data;
-                            }
-
-                            debugInfo.push(
-                              `Final services count: ${services.length}`
-                            );
-
-                            if (services.length > 0) {
-                              const service = services[0];
-                              debugInfo.push(
-                                `First service: ${JSON.stringify(service)}`
-                              );
-
-                              // Generate some URLs
-                              const serviceUrl = `/ct/${service.slug}/in/${country.slug}/st/${state.slug}`;
-                              urls.push({
-                                url: serviceUrl,
-                                changefreq: "weekly",
-                                priority: "0.8",
-                              });
-                              debugInfo.push(
-                                `Generated service URL: ${serviceUrl}`
-                              );
-
-                              // Test cities API
-                              debugInfo.push("Testing cities API...");
-                              const citiesUrl = `${SITE_URL}/api/cities/${country.slug}/${state.slug}/${service.slug}`;
-                              debugInfo.push(`Cities URL: ${citiesUrl}`);
-
-                              try {
-                                const citiesResponse = await fetch(citiesUrl, {
-                                  cache: "no-store",
-                                });
-                                debugInfo.push(
-                                  `Cities response status: ${citiesResponse.status}`
-                                );
-
-                                if (citiesResponse.ok) {
-                                  const citiesText =
-                                    await citiesResponse.text();
-                                  debugInfo.push(
-                                    `Cities response length: ${citiesText.length} chars`
-                                  );
-
-                                  try {
-                                    const citiesData = JSON.parse(citiesText);
-                                    debugInfo.push(
-                                      `Cities data type: ${typeof citiesData}`
-                                    );
-                                    debugInfo.push(
-                                      `Cities is array: ${Array.isArray(
-                                        citiesData
-                                      )}`
-                                    );
-
-                                    if (Array.isArray(citiesData)) {
-                                      debugInfo.push(
-                                        `Cities count: ${citiesData.length}`
-                                      );
-
-                                      citiesData.forEach((city, index) => {
-                                        if (index < 3) {
-                                          // Only log first 3 cities
-                                          const cityUrl = `/ct/${service.slug}/in/${country.slug}/st/${state.slug}/a/${city.slug}`;
-                                          urls.push({
-                                            url: cityUrl,
-                                            changefreq: "monthly",
-                                            priority: "0.6",
-                                          });
-                                          debugInfo.push(
-                                            `Generated city URL ${
-                                              index + 1
-                                            }: ${cityUrl}`
-                                          );
-                                        }
-                                      });
-                                    }
-                                  } catch (e) {
-                                    debugInfo.push(
-                                      `Cities JSON parse error: ${e.message}`
-                                    );
-                                  }
-                                } else {
-                                  const errorText = await citiesResponse.text();
-                                  debugInfo.push(
-                                    `Cities API error: ${errorText.substring(
-                                      0,
-                                      100
-                                    )}`
-                                  );
-                                }
-                              } catch (e) {
-                                debugInfo.push(
-                                  `Cities API fetch error: ${e.message}`
-                                );
-                              }
-                            }
-                          } catch (e) {
-                            debugInfo.push(
-                              `Services JSON parse error: ${e.message}`
-                            );
-                          }
-                        } else {
-                          const errorText = await servicesResponse.text();
-                          debugInfo.push(
-                            `Services API error: ${errorText.substring(0, 100)}`
-                          );
-                        }
-                      } catch (e) {
-                        debugInfo.push(
-                          `Services API fetch error: ${e.message}`
-                        );
-                      }
-                    }
-                  } catch (e) {
-                    debugInfo.push(`States JSON parse error: ${e.message}`);
                   }
                 } else {
-                  const errorText = await statesResponse.text();
                   debugInfo.push(
-                    `States API error: ${errorText.substring(0, 100)}`
+                    `Cities API failed for ${service.slug} in ${country.slug}/${state.slug}: ${citiesResponse.status}`
                   );
                 }
-              } catch (e) {
-                debugInfo.push(`States API fetch error: ${e.message}`);
+              } catch (cityError) {
+                debugInfo.push(
+                  `City fetch error for ${service.slug}: ${cityError.message}`
+                );
               }
             }
-          } else {
+
+            if (services.length > 0) {
+              debugInfo.push(
+                `Added ${services.length} service URLs for ${state.name}, ${country.name}`
+              );
+            }
+          } catch (serviceError) {
             debugInfo.push(
-              `Countries data is not array: ${JSON.stringify(data)}`
+              `Service fetch error for ${country.slug}/${state.slug}: ${serviceError.message}`
             );
           }
-        } catch (e) {
-          debugInfo.push(`Countries JSON parse error: ${e.message}`);
         }
-      } else {
-        const errorText = await response.text();
-        debugInfo.push(`Countries API error: ${errorText.substring(0, 100)}`);
+      } catch (stateError) {
+        debugInfo.push(
+          `State fetch error for ${country.slug}: ${stateError.message}`
+        );
       }
-    } catch (e) {
-      debugInfo.push(`Countries API fetch error: ${e.message}`);
-      debugInfo.push(`Countries API fetch stack: ${e.stack}`);
+    }
+
+    // Add some category-level URLs if you want them
+    // You could also add URLs like /ct/{service}/in/{country} (without state)
+    // or /in/{country} (just country pages)
+
+    // Generate some additional useful URLs
+    for (const country of countries.slice(0, 5)) {
+      // Top 5 countries
+      // Add country-level URLs
+      urls.push({
+        url: `/in/${country.slug}`,
+        changefreq: "weekly",
+        priority: "0.7",
+      });
+
+      // Add service category URLs for top countries
+      const topServices = [
+        "digital-marketing-services",
+        "web-development",
+        "seo-services",
+      ]; // Adjust based on your most important services
+      for (const serviceSlug of topServices) {
+        urls.push({
+          url: `/ct/${serviceSlug}/in/${country.slug}`,
+          changefreq: "weekly",
+          priority: "0.7",
+        });
+      }
     }
   } catch (error) {
     debugInfo.push(`General error: ${error.message}`);
     debugInfo.push(`General error stack: ${error.stack}`);
   }
 
-  debugInfo.push(`Total URLs generated: ${urls.length}`);
-  debugInfo.push("=== END DEBUG INFO ===");
+  debugInfo.push(`Total dynamic URLs generated: ${urls.length}`);
 
-  // Static URLs
+  // Add static URLs
   const staticUrls = [
     { url: "", priority: "1.0" },
     { url: "about", priority: "0.7" },
@@ -271,7 +221,11 @@ export async function GET(request) {
     { url: "contact", priority: "0.7" },
   ];
 
-  // Generate sitemap with debug info in comments
+  debugInfo.push(`Total static URLs: ${staticUrls.length}`);
+  debugInfo.push(`Grand total URLs: ${urls.length + staticUrls.length}`);
+  debugInfo.push("=== END DEBUG INFO ===");
+
+  // Generate sitemap XML
   const staticXml = staticUrls
     .map(
       (item) => `
@@ -296,20 +250,15 @@ export async function GET(request) {
     )
     .join("");
 
-  const debugComments = debugInfo.map((info) => `<!-- ${info} -->`).join("\n");
-
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${debugComments}
-${staticXml}
-${dynamicXml}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${staticXml}${dynamicXml}
 </urlset>`;
 
   return new NextResponse(sitemap, {
     status: 200,
     headers: {
       "Content-Type": "application/xml",
-      "Cache-Control": "no-cache",
+      "Cache-Control": "s-maxage=3600, stale-while-revalidate", // Cache for 1 hour
     },
   });
 }
